@@ -1,58 +1,74 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { LegendList } from '@legendapp/list';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useState } from 'react';
+
+const data = [
+  // First 5 items of Type A
+  { id: 1, type: 'typeA', title: 'Item A1', description: 'Description for A1' },
+  { id: 2, type: 'typeA', title: 'Item A2', description: 'Description for A2' },
+  { id: 3, type: 'typeA', title: 'Item A3', description: 'Description for A3' },
+  { id: 4, type: 'typeA', title: 'Item A4', description: 'Description for A4' },
+  { id: 5, type: 'typeA', title: 'Item A5', description: 'Description for A5' },
+  
+  // 1 item of Type B
+  { id: 6, type: 'typeB', title: 'Item B1', description: 'Description for B1' },
+  
+  // 10 more items of Type A
+  { id: 7, type: 'typeA', title: 'Item A6', description: 'Description for A6' },
+  { id: 8, type: 'typeA', title: 'Item A7', description: 'Description for A7' },
+  { id: 9, type: 'typeA', title: 'Item A8', description: 'Description for A8' },
+  { id: 10, type: 'typeA', title: 'Item A9', description: 'Description for A9' },
+  { id: 11, type: 'typeA', title: 'Item A10', description: 'Description for A10' },
+  { id: 12, type: 'typeA', title: 'Item A11', description: 'Description for A11' },
+  { id: 13, type: 'typeA', title: 'Item A12', description: 'Description for A12' },
+  { id: 14, type: 'typeA', title: 'Item A13', description: 'Description for A13' },
+  { id: 15, type: 'typeA', title: 'Item A14', description: 'Description for A14' },
+  { id: 16, type: 'typeA', title: 'Item A15', description: 'Description for A15' },
+];
+
 
 export default function HomeScreen() {
+  const renderItem = ({ item }: { item: any }) => {
+    return item.type === 'typeA' ? <ItemA item={item} /> : <ItemB item={item} />;
+  };
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <SafeAreaView>
+      <LegendList
+        data={data}
+        renderItem={renderItem}
+        estimatedItemSize={16}
+      />
+    </SafeAreaView>
   );
 }
+
+const ItemA = ({ item }: { item: any }) => {
+  return (
+    <View>
+      <Text>{item.title}</Text>
+    </View>
+  );
+};
+
+const ItemB = ({ item }: { item: any }) => {
+
+  const [isVisible, setIsVisible] = useState(true);
+
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
+  if (!isVisible) return null;
+
+  return (
+    <TouchableOpacity onPress={toggleVisibility}>
+      <Text>{item.title}</Text>
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   titleContainer: {
