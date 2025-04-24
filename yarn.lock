@@ -1434,10 +1434,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@legendapp/list@^1.0.0-beta.24":
-  version "1.0.0-beta.24"
-  resolved "https://registry.yarnpkg.com/@legendapp/list/-/list-1.0.0-beta.24.tgz#7c9ddbce5d0aa7edfdb3364c0e0932ae04b970ab"
-  integrity sha512-oZLd0pPj3lXpQq3x3gvtBOqLp9rUwdNA9MkdGgD/OVzci63YeIqpOkjb2i1Bf99csDddasIwty8lp68q51Cjrw==
+"@legendapp/list@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@legendapp/list/-/list-1.0.1.tgz#35f170344dbda91d8e1acac016cad0fc9f5962e9"
+  integrity sha512-kioDNhZ85JYqLWeXu7AX/fRYCYhjPOfykVNX3Rxg56AQSw8YgZhokSJMzmOjXvcGPiPYFyAo6m5bT1UnA19VKw==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -3192,6 +3192,11 @@ expo-haptics@~14.0.1:
   resolved "https://registry.yarnpkg.com/expo-haptics/-/expo-haptics-14.0.1.tgz#ff4ead605e33f1917e615c9328af7ac1c34892dc"
   integrity sha512-V81FZ7xRUfqM6uSI6FA1KnZ+QpEKnISqafob/xEfcx1ymwhm4V3snuLWWFjmAz+XaZQTqlYa8z3QbqEXz7G63w==
 
+expo-image@~2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/expo-image/-/expo-image-2.0.7.tgz#087ca651e3dcd2e92efdda11a6c9e3ad6fddc127"
+  integrity sha512-kv40OIJOkItwznhdqFmKxTMC5O8GkpyTf8ng7Py4Hy6IBiH59dkeP6vUZQhzPhJOm5v1kZK4XldbskBosqzOug==
+
 expo-keep-awake@~14.0.3:
   version "14.0.3"
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-14.0.3.tgz#74c91b68effdb6969bc1e8371621aad90386cfbf"
@@ -3271,6 +3276,11 @@ expo-system-ui@~4.0.8:
   dependencies:
     "@react-native/normalize-colors" "0.76.7"
     debug "^4.3.2"
+
+expo-video@~2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/expo-video/-/expo-video-2.0.6.tgz#4da4e4d427ad42649881a5336697b5a7164aaab3"
+  integrity sha512-oDorKwjreHT596oY6ZfktbDa3VF+Sq7gVsTbnQ4QVqGYL13mIO0s+h4y9xMyG/cDWyFpiRc4UT8KkPdxL0wViQ==
 
 expo-web-browser@~14.0.2:
   version "14.0.2"

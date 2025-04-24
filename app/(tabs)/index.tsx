@@ -1,80 +1,91 @@
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-
+import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { Image } from 'expo-image';
 import { LegendList } from '@legendapp/list';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useState } from 'react';
 
-const data = [
-  // First 5 items of Type A
-  { id: 1, type: 'typeA', title: 'Item A1', description: 'Description for A1' },
-  { id: 2, type: 'typeA', title: 'Item A2', description: 'Description for A2' },
-  { id: 3, type: 'typeA', title: 'Item A3', description: 'Description for A3' },
-  { id: 4, type: 'typeA', title: 'Item A4', description: 'Description for A4' },
-  { id: 5, type: 'typeA', title: 'Item A5', description: 'Description for A5' },
+const data = Array.from({ length: 200 }, (_, index) => {
+  // Create different height patterns for images
+  const baseHeight = 200;
+  let height;
   
-  // 1 item of Type B
-  { id: 6, type: 'typeB', title: 'Item B1', description: 'Description for B1' },
-  
-  // 10 more items of Type A
-  { id: 7, type: 'typeA', title: 'Item A6', description: 'Description for A6' },
-  { id: 8, type: 'typeA', title: 'Item A7', description: 'Description for A7' },
-  { id: 9, type: 'typeA', title: 'Item A8', description: 'Description for A8' },
-  { id: 10, type: 'typeA', title: 'Item A9', description: 'Description for A9' },
-  { id: 11, type: 'typeA', title: 'Item A10', description: 'Description for A10' },
-  { id: 12, type: 'typeA', title: 'Item A11', description: 'Description for A11' },
-  { id: 13, type: 'typeA', title: 'Item A12', description: 'Description for A12' },
-  { id: 14, type: 'typeA', title: 'Item A13', description: 'Description for A13' },
-  { id: 15, type: 'typeA', title: 'Item A14', description: 'Description for A14' },
-  { id: 16, type: 'typeA', title: 'Item A15', description: 'Description for A15' },
-];
+  if (index % 15 === 0) {
+    height = baseHeight * 3; // Tall images
+  } else if (index % 7 === 0) {
+    height = baseHeight * 1.5; // Medium-tall images
+  } else if (index % 3 === 0) {
+    height = baseHeight * 0.8; // Shorter images
+  } else {
+    height = baseHeight; // Standard height
+  }
 
+  return {
+    id: index,
+    height: Math.round(height),
+    imageUrl: `https://picsum.photos/${Math.round(Dimensions.get('window').width)}/${Math.round(height)}?random=${index}`,
+  };
+});
 
 export default function HomeScreen() {
-  const renderItem = ({ item }: { item: any }) => {
-    return item.type === 'typeA' ? <ItemA item={item} /> : <ItemB item={item} />;
+  const renderItem = ({ item }: { item: { id: number, height: number, imageUrl: string } }) => {
+
+    if (item.id === 0) {
+      return (
+        <View style={{height: 300, backgroundColor: 'blue'}}>
+          <Text style={{color: 'white'}}>0</Text>
+        </View>
+      )
+    }
+
+    if (item.id === 3) {
+      return (
+        <View style={{height: 100, backgroundColor: 'blue'}}>
+          <Text style={{color: 'white'}}>3</Text>
+        </View>
+      )
+    }
+
+    return (
+      <View>
+        <Image
+          source={{ uri: item.imageUrl }}
+          style={{
+            flex: 1,
+            aspectRatio: 1.7,
+          }}
+        />
+        <Text style={styles.imageText}>{`${item.id} (${item.height})`}</Text>
+      </View>
+    );
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <LegendList
         data={data}
         renderItem={renderItem}
-        estimatedItemSize={16}
+        keyExtractor={(item) => item.id.toString()}
       />
     </SafeAreaView>
   );
 }
-
-const ItemA = ({ item }: { item: any }) => {
-  return (
-    <View>
-      <Text>{item.title}</Text>
-    </View>
-  );
-};
-
-const ItemB = ({ item }: { item: any }) => {
-
-  const [isVisible, setIsVisible] = useState(true);
-
-  const toggleVisibility = () => {
-    setIsVisible(!isVisible);
-  };
-
-  if (!isVisible) return null;
-
-  return (
-    <TouchableOpacity onPress={toggleVisibility}>
-      <Text>{item.title}</Text>
-    </TouchableOpacity>
-  );
-};
 
 const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+  },
+  video: {
+    aspectRatio: 1.7,
+  },
+  imageText: {
+    position: 'absolute',
+    bottom: 8,
+    left: 8,
+    color: 'white',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    padding: 4,
+    borderRadius: 4,
   },
   stepContainer: {
     gap: 8,
