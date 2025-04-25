@@ -1434,10 +1434,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@legendapp/list@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@legendapp/list/-/list-1.0.1.tgz#35f170344dbda91d8e1acac016cad0fc9f5962e9"
-  integrity sha512-kioDNhZ85JYqLWeXu7AX/fRYCYhjPOfykVNX3Rxg56AQSw8YgZhokSJMzmOjXvcGPiPYFyAo6m5bT1UnA19VKw==
+"@legendapp/list@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@legendapp/list/-/list-1.0.2.tgz#94113ab60db397476866d23fec6badc02630f217"
+  integrity sha512-duVhYbkOASQN5NXcxEStxpclBLDQ0H//LtRDMQxUTl+buUKIVPJoio/OhFquwjpBls2phkwKDMV0zOJrsFfqNA==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -3276,11 +3276,6 @@ expo-system-ui@~4.0.8:
   dependencies:
     "@react-native/normalize-colors" "0.76.7"
     debug "^4.3.2"
-
-expo-video@~2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/expo-video/-/expo-video-2.0.6.tgz#4da4e4d427ad42649881a5336697b5a7164aaab3"
-  integrity sha512-oDorKwjreHT596oY6ZfktbDa3VF+Sq7gVsTbnQ4QVqGYL13mIO0s+h4y9xMyG/cDWyFpiRc4UT8KkPdxL0wViQ==
 
 expo-web-browser@~14.0.2:
   version "14.0.2"
