@@ -1,7 +1,8 @@
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, Text, Dimensions, TouchableOpacity } from 'react-native';
 import { Image } from 'expo-image';
 import { LegendList } from '@legendapp/list';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useState } from 'react';
 
 const data = Array.from({ length: 200 }, (_, index) => {
   // Create different height patterns for images
@@ -26,26 +27,20 @@ const data = Array.from({ length: 200 }, (_, index) => {
 });
 
 export default function HomeScreen() {
+
+  const [visibleIndexes, setVisibleIndexes] = useState<number[]>(data.map(d => d.id));
+
+
   const renderItem = ({ item }: { item: { id: number, height: number, imageUrl: string } }) => {
 
-    if (item.id === 0) {
-      return (
-        <View style={{height: 300, backgroundColor: 'blue'}}>
-          <Text style={{color: 'white'}}>0</Text>
-        </View>
-      )
-    }
-
-    if (item.id === 3) {
-      return (
-        <View style={{height: 100, backgroundColor: 'blue'}}>
-          <Text style={{color: 'white'}}>3</Text>
-        </View>
-      )
+    if (!visibleIndexes.includes(item.id)) {
+      return null;
     }
 
     return (
-      <View>
+      <TouchableOpacity style={{ padding: 8 }} onPress={() => {
+        setVisibleIndexes(visibleIndexes.filter(d => d !== item.id));
+      }}>
         <Image
           source={{ uri: item.imageUrl }}
           style={{
@@ -54,7 +49,7 @@ export default function HomeScreen() {
           }}
         />
         <Text style={styles.imageText}>{`${item.id} (${item.height})`}</Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 
@@ -62,6 +57,7 @@ export default function HomeScreen() {
     <SafeAreaView style={{ flex: 1 }}>
       <LegendList
         data={data}
+        extraData={visibleIndexes}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
       />
