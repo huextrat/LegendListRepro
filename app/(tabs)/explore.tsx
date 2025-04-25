@@ -28,7 +28,7 @@ const data = Array.from({ length: 200 }, (_, index) => {
 
 const loadingData = Array.from({ length: 200 }, (_, index) => {
   return {
-    id: index,
+    id: index + "skeleton",
     skeleton: true
   };
 });
@@ -45,7 +45,6 @@ export default function TabTwoScreen() {
 
   const renderItem = ({ item }: { item: { id: number, height: number, imageUrl: string } | { id: number, skeleton: boolean } }) => {
 
-    console.log(item)
     if ("skeleton" in item && item.skeleton) {
       return (
         <View style={{height: 100, backgroundColor: 'blue'}}>
@@ -89,8 +88,6 @@ export default function TabTwoScreen() {
       <LegendList
         data={_data}
         renderItem={renderItem}
-        ListHeaderComponent={<Text>Header</Text>}
-        ListFooterComponent={<Text>Footer</Text>}
         keyExtractor={(item) => item.id.toString()}
       />
     </SafeAreaView>

@@ -1434,10 +1434,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@legendapp/list@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@legendapp/list/-/list-1.0.2.tgz#94113ab60db397476866d23fec6badc02630f217"
-  integrity sha512-duVhYbkOASQN5NXcxEStxpclBLDQ0H//LtRDMQxUTl+buUKIVPJoio/OhFquwjpBls2phkwKDMV0zOJrsFfqNA==
+"@legendapp/list@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@legendapp/list/-/list-1.0.3.tgz#91512f6a201e1e54c1723c9e445331e97e9a2b41"
+  integrity sha512-a3RoILTfSr3/A76ESNavZYP4OhjYHC+PcXo5f8OxqDfkmrcGYZOz6/1aYW5dhSF1R4UH7evj0i0OAk5P++qS6w==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
