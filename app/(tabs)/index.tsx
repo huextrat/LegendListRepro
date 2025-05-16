@@ -1,8 +1,9 @@
-import { StyleSheet, Text, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, Dimensions, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
-import { LegendList } from '@legendapp/list';
+import { LegendList, LegendListRef } from '@legendapp/list';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { useScrollToTop } from '@react-navigation/native';
 
 const data = Array.from({ length: 200 }, (_, index) => {
   // Create different height patterns for images
@@ -29,7 +30,9 @@ const data = Array.from({ length: 200 }, (_, index) => {
 export default function HomeScreen() {
 
   const [visibleIndexes, setVisibleIndexes] = useState<number[]>(data.map(d => d.id));
+  const listRef = useRef<LegendListRef>(null);
 
+  useScrollToTop(listRef);
 
   const renderItem = ({ item }: { item: { id: number, height: number, imageUrl: string } }) => {
 
@@ -38,7 +41,7 @@ export default function HomeScreen() {
     }
 
     return (
-      <TouchableOpacity style={{ padding: 8 }} onPress={() => {
+      <TouchableOpacity style={{ padding: 8, height: item.height }} onPress={() => {
         setVisibleIndexes(visibleIndexes.filter(d => d !== item.id));
       }}>
         <Image
@@ -54,12 +57,14 @@ export default function HomeScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, flexDirection: 'column' }}>
       <LegendList
+      ref={listRef}
         data={data}
         extraData={visibleIndexes}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
+        ListHeaderComponent={() => <View style={{ height: 100, width: 100, backgroundColor: 'red' }} />}
       />
     </SafeAreaView>
   );

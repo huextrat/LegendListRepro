@@ -2,7 +2,8 @@ import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { Image } from 'expo-image';
 import { LegendList } from '@legendapp/list';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { useScrollToTop } from '@react-navigation/native';
 
 const data = Array.from({ length: 200 }, (_, index) => {
   // Create different height patterns for images
@@ -35,13 +36,16 @@ const loadingData = Array.from({ length: 200 }, (_, index) => {
 
 export default function TabTwoScreen() {
 
-  const [_data, setData] = useState(loadingData);
+  const [_data, setData] = useState(data);
   const [isLoading, setIsLoading] = useState(true);
+  const listRef = useRef(false)
 
-  setTimeout(() => {
-    setData(data);
-    setIsLoading(false);
-  }, 2000);
+  useScrollToTop(listRef);
+
+  // setTimeout(() => {
+  //   setData(data);
+  //   setIsLoading(false);
+  // }, 2000);
 
   const renderItem = ({ item }: { item: { id: number, height: number, imageUrl: string } | { id: number, skeleton: boolean } }) => {
 
@@ -86,6 +90,7 @@ export default function TabTwoScreen() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <LegendList
+      ref={listRef}
         data={_data}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}

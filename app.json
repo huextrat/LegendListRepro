@@ -10,7 +10,8 @@
     "newArchEnabled": false,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.hugoextrat.LegendListRepro"
+      "bundleIdentifier": "com.hugoextrat.LegendListRepro",
+      "appleTeamId": "63788HPR72"
     },
     "android": {
       "adaptiveIcon": {
